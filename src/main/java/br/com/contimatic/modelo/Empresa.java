@@ -1,16 +1,32 @@
 package br.com.contimatic.modelo;
 
 public class Empresa {
+	private int codigo;
 	private String nome;
 	private String razao;
 	private String cnpj;
+	private Endereco endereco;
 
 
 
-public Empresa (String nome, String razao, String cnpj) {
+public Empresa (int codigo, String nome, String razao, String cnpj, Endereco  endereco) {
+	this.codigo = codigo;
 	this.nome = nome;
 	this.razao = razao;
 	this.cnpj = cnpj;
+	this.endereco = endereco;
+}
+
+
+
+public Endereco getEndereco() {
+	return endereco;
+}
+
+
+
+public int getCodigo() {
+	return codigo;
 }
 
 
@@ -37,6 +53,7 @@ public String getCnpj() {
 public int hashCode() {
 	final int prime = 31;
 	int result = 1;
+	result = prime * result + codigo;
 	result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 	result = prime * result + ((razao == null) ? 0 : razao.hashCode());
 	result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
@@ -65,10 +82,11 @@ public boolean equals(Object obj) {
 
 @Override
 public String toString() {
-	return String.format("%-50s%-50s%-18s%",
-											this.nome,
-											this.razao,
-											this.cnpj);
+	return String.format("%-8d%-50s%-50s%-18s%",
+			              this.codigo,
+						  this.nome,
+						  this.razao,
+					      this.cnpj);
 }
 
 
