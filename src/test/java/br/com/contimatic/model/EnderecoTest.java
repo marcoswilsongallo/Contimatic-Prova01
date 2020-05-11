@@ -1,4 +1,4 @@
-package br.com.contimatic.test;
+package br.com.contimatic.model;
 
 import br.com.contimatic.model.Endereco;
 import java.util.ArrayList;
@@ -40,28 +40,28 @@ public class EnderecoTest {
 	}
     @Order(1)
 	@Test
-	public void naoDeveLogradouroSerVazio() {
+	public void nao_deve_logradouro_ser_vazio() {
 		MatcherAssert.assertThat(enderecos, Matchers.<Endereco>hasProperty("logradouri", Matchers.isEmptyString()));
 	}
 
     @Order(2)
 	@Test
-	public void naoDeveNumeroSerNegativo() {
+	public void nao_deve_numero_ser_negativo() {
 		MatcherAssert.assertThat(enderecos, Matchers.hasProperty("numero", Matchers.greaterThan(0)));
 	}
     @Order(3)
 	@Test
-	public void naoDeveCepSerVazioOuNulo() {
+	public void nao_deve_cep_ser_vazio_ou_nulo() {
 		MatcherAssert.assertThat(enderecos, Matchers.hasProperty("cep", Matchers.isEmptyOrNullString()));
 	}
     @Order(4)
 	@Test
-	public void naoDeveBairroSerVazioOuNulo() {
+	public void nao_deve_bairro_ser_vazio_ou_nulo() {
 		MatcherAssert.assertThat(enderecos, Matchers.hasProperty("bairro", Matchers.isEmptyOrNullString()));
 	}
     @Order(5) 
 	@Test
-	public void naoDeveCidadeSerVazioOuNulo() {
+	public void nao_deve_cidade_ser_vazio_ou_nulo() {
 		MatcherAssert.assertThat(enderecos, Matchers.hasProperty("cidade", Matchers.isEmptyOrNullString()));
 	}
 
