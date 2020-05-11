@@ -4,9 +4,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+ 
+
 import org.junit.Test;
 import org.junit.jupiter.api.Order;
 import org.junit.BeforeClass;
+import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.After;
 import org.junit.Ignore;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -14,17 +21,39 @@ import org.hamcrest.Matchers;
 public class EnderecoTest {
 
 	private static Endereco endereco;
+	private static Calendar tempo_inicio;
+	
 
 	@BeforeClass
-	public static void BeforeClass() {
+	public static void before_class() {
+		System.out.println("Inicio dos Testes");
+		TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
 		endereco = new Endereco("Rua Ana Gomes", 20, "Itaquera", "Sao Paulo", "08215-360");
 	}
+	@Before
+	public  void before_test() {
+		tempo_inicio = Calendar.getInstance();
+	}
+	
+	@AfterClass
+	public static void after_class() {
+		System.out.println("Fim dos Testes");
+	}
+	
+	@After
+	public void after() {
+		Calendar tempo_final = Calendar.getInstance();
+		Calendar duracao = Calendar.getInstance();
+		duracao.setTimeInMillis(tempo_final.getTimeInMillis() - tempo_inicio.getTimeInMillis());
+        System.out.println("Tempo de teste: " + duracao.getTimeInMillis());		
+	}	
+	
 	
 	@Order(1)
 	@Test
 	public void deve_alterar_logradouro_do_endereco() {
 		endereco.setLogradouro("Rua Augusta");
-		assertEquals(endereco.getLogradouro(), "Rua Augusta");
+		assertEquals( "Rua Augusta", endereco.getLogradouro());
 	}
 
 	@Order(2)
@@ -68,6 +97,8 @@ public class EnderecoTest {
 		int i;
 		for (i = 0; i < 1000; i++)
 			empresa.setEndereco(endereconovo);
+		
+		assertTrue(empresa.getEndereco().equals(endereconovo));
 	}
 
 }
