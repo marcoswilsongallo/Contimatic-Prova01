@@ -1,7 +1,5 @@
 package br.com.contimatic.model;
 
-import br.com.contimatic.model.Empresa;
-import br.com.contimatic.model.Endereco;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -107,6 +105,14 @@ public class EmpresaTest {
 		MatcherAssert.assertThat(empresa.getEndereco().getCidade(), Matchers.containsString("Sao Paulo"));
 	}
 
+	@Ignore
+	@Test
+	public void deve_ter_cidade_Campinas() {
+		MatcherAssert.assertThat(empresa.getEndereco().getCidade(), Matchers.containsString("Campinas"));
+	}
+	
+
+
 	@Order(10)
 	@Test
 	public void deve_ter_cep_oito_digitos() {
@@ -121,5 +127,6 @@ public class EmpresaTest {
 		for (i = 0; i < 1000; i++)
 			empresa.setEndereco(endereconovo);
 	}
+	
 
 }
